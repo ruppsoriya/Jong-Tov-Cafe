@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jong Tov Cafe - Phnom Penh Cafes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 250px;
+            max-width: 400px;
+        }
+
+        input[type="text"], select {
+            width: 100%;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        input[type="text"]::placeholder {
+            color: #999;
+        }
+
+        button {
+            padding: 12px 25px;
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        button:hover {
+            background: #ff5252;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .stats {
+            background: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            color: #333;
+        }
+
+        .cafes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .cafe-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .cafe-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .cafe-image {
+            width: 100%;
+            height: 200px;
+            background: #f0f0f0;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+        }
+
+        .cafe-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .cafe-info {
+            padding: 20px;
+        }
+
+        .cafe-name {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .cafe-category {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            margin-bottom: 10px;
+        }
+
+        .cafe-details {
+            font-size: 0.95em;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .detail-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .detail-label {
+            font-weight: 600;
+            color: #333;
+            min-width: 80px;
+        }
+
+        .rating {
+            color: #ffc107;
+            font-weight: bold;
+        }
+
+        .wifi-score {
+            background: #e8f5e9;
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: #2e7d32;
+            font-weight: 600;
+        }
+
+        .links {
+            display: flex;
+            gap: 8px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .link-btn {
+            padding: 6px 12px;
+            font-size: 0.85em;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .link-btn:hover {
+            background: #764ba2;
+            transform: scale(1.05);
+        }
+
+        .no-data {
+            text-align: center;
+            color: #999;
+            padding: 40px;
+            font-size: 1.1em;
+        }
+
+        .empty-placeholder {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #f5f5f5 25%, #e8e8e8 25%, #e8e8e8 50%, #f5f5f5 50%, #f5f5f5 75%, #e8e8e8 75%, #e8e8e8);
+            background-size: 20px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ccc;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            .controls {
+                flex-direction: column;
+            }
+
+            .search-box {
+                max-width: 100%;
+            }
+
+            .cafes-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>☕ Jong Tov Cafe</h1>
+            <p>Discover the best cafes in Phnom Penh</p>
+        </header>
+
+        <div class="controls">
+            <div class="search-box">
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    placeholder="Search cafes by name, district, or category..."
+                    oninput="filterCafes()"
+                >
+            </div>
+            <select id="categoryFilter" onchange="filterCafes()">
+                <option value="">All Categories</option>
+                <option value="specialty coffee">Specialty Coffee</option>
+                <option value="cafe">Cafe</option>
+                <option value="coffee chain">Coffee Chain</option>
+                <option value="healthy cafe">Healthy Cafe</option>
+                <option value="bakery">Bakery</option>
+                <option value="tea house">Tea House</option>
+                <option value="restaurant">Restaurant</option>
+            </select>
+            <button onclick="resetFilters()">Reset</button>
+        </div>
+
+        <div class="stats">
+            <span id="cafeCount">0</span> cafes found
+        </div>
+
+        <div class="cafes-grid" id="cafesGrid">
+            <!-- Cafes will be loaded here -->
+        </div>
+    </div>
+
+    <script>
+        let allCafes = [];
+
+        // Load the cafe data
+        async function loadCafes() {
+            try {
+                const response = await fetch('phnom_penh_cafes_detailed.json');
+                allCafes = await response.json();
+                displayCafes(allCafes);
+            } catch (error) {
+                console.error('Error loading cafes:', error);
+                document.getElementById('cafesGrid').innerHTML = '<div class="no-data">Error loading cafe data</div>';
+            }
+        }
+
+        function displayCafes(cafes) {
+            const grid = document.getElementById('cafesGrid');
+            
+            if (cafes.length === 0) {
+                grid.innerHTML = '<div class="no-data">No cafes found matching your criteria</div>';
+                return;
+            }
+
+            grid.innerHTML = cafes.map(cafe => `
+                <div class="cafe-card">
+                    <div class="cafe-image">
+                        ${cafe.google_maps_photo ? 
+                            `<img src="${cafe.google_maps_photo}" alt="${cafe.cafe_name}">` :
+                            `<div class="empty-placeholder">No image available</div>`
+                        }
+                    </div>
+                    <div class="cafe-info">
+                        <div class="cafe-name">${cafe.cafe_name}</div>
+                        <div class="cafe-category">${cafe.category || 'Cafe'}</div>
+                        
+                        <div class="cafe-details">
+                            ${cafe.district ? `<div class="detail-row"><span class="detail-label">📍 District:</span> ${cafe.district}</div>` : ''}
+                            ${cafe.rating ? `<div class="detail-row"><span class="detail-label">⭐ Rating:</span> <span class="rating">${cafe.rating}/5</span></div>` : ''}
+                            ${cafe.wifi_score_0_10 ? `<div class="detail-row"><span class="detail-label">📶 WiFi:</span> <span class="wifi-score">${cafe.wifi_score_0_10}/10</span></div>` : ''}
+                        </div>
+
+                        <div class="links">
+                            ${cafe.website ? `<a href="${cafe.website}" target="_blank" class="link-btn">🌐 Website</a>` : ''}
+                            ${cafe.google_maps_url ? `<a href="${cafe.google_maps_url}" target="_blank" class="link-btn">🗺️ Maps</a>` : ''}
+                            ${cafe.facebook ? `<a href="${cafe.facebook}" target="_blank" class="link-btn">f Facebook</a>` : ''}
+                            ${cafe.instagram ? `<a href="${cafe.instagram}" target="_blank" class="link-btn">📷 Instagram</a>` : ''}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            document.getElementById('cafeCount').textContent = cafes.length;
+        }
+
+        function filterCafes() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const categoryFilter = document.getElementById('categoryFilter').value.toLowerCase();
+
+            const filtered = allCafes.filter(cafe => {
+                const matchesSearch = 
+                    cafe.cafe_name.toLowerCase().includes(searchTerm) ||
+                    (cafe.district && cafe.district.toLowerCase().includes(searchTerm)) ||
+                    cafe.category.toLowerCase().includes(searchTerm);
+
+                const matchesCategory = !categoryFilter || cafe.category.toLowerCase() === categoryFilter;
+
+                return matchesSearch && matchesCategory;
+            });
+
+            displayCafes(filtered);
+        }
+
+        function resetFilters() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('categoryFilter').value = '';
+            displayCafes(allCafes);
+        }
+
+        // Load cafes when page loads
+        window.addEventListener('load', loadCafes);
+    </script>
+</body>
+</html>
