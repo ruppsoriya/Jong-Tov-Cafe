@@ -1,16 +1,16 @@
 [
-  {
-    "cafe_name": "BROWN Roastery | BKK",
-    "category": "specialty coffee",
-    "district": "BKK1",
-    "rating": 4.3,
-    "wifi_score_0_10": 8,
-    "google_maps_url": "https://www.google.com/maps/search/Brown+Coffee+BKK1+Phnom+Penh",
-    "google_maps_photo": "https://lh3.googleusercontent.com/gps-cs-s/APNQkAF13eAHaPC5k_6yERJVuwf1RhnvOPOK61E6aAIN636z7vk4J85P3hO1kQtW5o5M8xzDQlK8liRk45XFmiQ6NDwEfjDL1g9Dof8t75CDj7s2bUEwTkQLBKBajBR9yguZ-gYzM9IqTA=w681-h240-k-no",
-    "website": "https://www.browncoffee.com.kh/",
-    "facebook": "https://www.facebook.com/browncoffee.kh/",
-    "instagram": "https://www.instagram.com/browncoffeeandbakery/"
-  },
+ {
+  "cafe_name": "BROWN Roastery | BKK",
+  "category": "specialty coffee",
+  "district": "BKK1",
+  "rating": 4.3,
+  "wifi_score_0_10": 8,
+  "google_maps_url": "https://www.google.com/maps/search/Brown+Coffee+BKK1+Phnom+Penh",
+  "google_maps_photo": "https://lh3.googleusercontent.com/gps-cs-s/APNQkAF13eAHaPC5k_6yERJVuwf1RhnvOPOK61E6aAIN636z7vk4J85P3hO1kQtW5o5M8xzDQlK8liRk45XFmiQ6NDwEfjDL1g9Dof8t75CDj7s2bUEwTkQLBKBajBR9ygu[...]",
+  "website": "https://www.browncoffee.com.kh/",
+  "facebook": "https://www.facebook.com/browncoffee.kh/",
+  "instagram": "https://www.instagram.com/browncoffeeandbakery/"
+},
   {
     "cafe_name": "Java Creative Cafe Toul Kork",
     "category": "cafe",
